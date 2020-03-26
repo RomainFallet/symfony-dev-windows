@@ -43,7 +43,7 @@ Windows 10:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RomainFallet/symfony-dev-windows/master/windows10_configure_dev_env.ps1'))
 ```
 
-*See [manual instructions](#manual-configuration-dev-environment) for details.*
+*See [manual instructions](#manual-configuration) for details.*
 
 ## Manual configuration
 
