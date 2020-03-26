@@ -1,0 +1,12 @@
+name: Test dev env install script
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test-dev-windows:
+    runs-on: [self-hosted, windows]
+    steps:
+      - name: Test dev environment install on Windows
+        run: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RomainFallet/symfony-dev-windows/master/windows10_configure_dev_env.ps1'))
