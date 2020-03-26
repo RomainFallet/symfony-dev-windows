@@ -36,8 +36,6 @@ Its purpose in not to be bullet-proof neither to handle all cases. It's  just he
 
 [Back to top ↑](#table-of-contents)
 
-Windows 10:
-
 ```powershell
 # Get and execute script directly
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RomainFallet/symfony-dev-windows/master/windows10_configure_dev_env.ps1'))
@@ -50,8 +48,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ### Prerequisites
 
 [Back to top ↑](#table-of-contents)
-
-Windows 10:
 
 ![chocolatey](https://user-images.githubusercontent.com/6952638/70372307-a008ed00-18dd-11ea-8288-97a9fbc7fb46.png)
 
@@ -75,8 +71,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![git](https://user-images.githubusercontent.com/6952638/71176962-3a1c4e00-226b-11ea-83a1-5a66bd37a68b.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y git
@@ -90,8 +84,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Back to top ↑](#table-of-contents)
 
 ![symfony](https://user-images.githubusercontent.com/6952638/71176964-3ab4e480-226b-11ea-8522-081106cbff50.png)
-
-Windows 10:
 
 ```powershell
 # Create a new folder
@@ -119,8 +111,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Back to top ↑](#table-of-contents)
 
 ![php](https://user-images.githubusercontent.com/6952638/70372327-bca52500-18dd-11ea-8638-7cdab7c5d6e0.png)
-
-Windows 10:
 
 ```powershell
 # Install
@@ -159,8 +149,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![composer](https://user-images.githubusercontent.com/6952638/70372308-a008ed00-18dd-11ea-9ee0-61d017dfa488.png)
 
-Windows 10:
-
 ```powershell
 # Download installer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -192,8 +180,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![mariadb](https://user-images.githubusercontent.com/6952638/71176963-3a1c4e00-226b-11ea-9627-e64caabef009.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y mariadb --version=10.4.8
@@ -208,8 +194,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![node](https://user-images.githubusercontent.com/6952638/71177167-a4cd8980-226b-11ea-9095-c96d5b96faa7.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y nodejs --version=12.13.1
@@ -223,8 +207,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Back to top ↑](#table-of-contents)
 
 ![yarn](https://user-images.githubusercontent.com/6952638/70372314-a13a1a00-18dd-11ea-9cdb-7b976c2beab8.png)
-
-Windows 10:
 
 ```powershell
 # Install
