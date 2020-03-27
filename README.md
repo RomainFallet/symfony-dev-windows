@@ -1,10 +1,10 @@
-# The Symfony dev instructions kit for Windows
+# The PHP/Symfony dev instructions kit for Windows
 
 **This repository is part of the [symfony-dev-deploy](https://github.com/RomainFallet/symfony-dev-deploy) repository.**
 
-![Dev environment install scripts](https://github.com/RomainFallet/symfony-dev-windows/workflows/Test%20dev%20env%20install%20script/badge.svg)
+![Test dev env install script](https://github.com/RomainFallet/symfony-dev-windows/workflows/Test%20dev%20env%20install%20script/badge.svg)
 
-The purpose of this repository is to provide instructions to configure a Symfony development environment on **Windows 10**.
+The purpose of this repository is to provide instructions to configure a PHP/Symfony development environment on **Windows 10**.
 
 The goal is to provide an opinionated, fully tested environment, that just work.
 
@@ -14,7 +14,7 @@ These instructions are also available for [macOS](https://github.com/RomainFalle
 
 * [Important notice](#important-notice)
 * [Quickstart](#quickstart)
-* [Manual configuration](#manual-configuration-dev-environment)
+* [Manual configuration](#manual-configuration)
     1. [Prerequisites](#prerequisites)
     2. [Git](#git)
     3. [Symfony CLI](#symfony-cli)
@@ -36,22 +36,18 @@ Its purpose in not to be bullet-proof neither to handle all cases. It's  just he
 
 [Back to top ↑](#table-of-contents)
 
-Windows 10:
-
 ```powershell
 # Get and execute script directly
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/RomainFallet/symfony-dev-windows/master/windows10_configure_dev_env.ps1'))
 ```
 
-*See [manual instructions](#manual-configuration-dev-environment) for details.*
+*See [manual instructions](#manual-configuration) for details.*
 
 ## Manual configuration
 
 ### Prerequisites
 
 [Back to top ↑](#table-of-contents)
-
-Windows 10:
 
 ![chocolatey](https://user-images.githubusercontent.com/6952638/70372307-a008ed00-18dd-11ea-8288-97a9fbc7fb46.png)
 
@@ -75,8 +71,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![git](https://user-images.githubusercontent.com/6952638/71176962-3a1c4e00-226b-11ea-83a1-5a66bd37a68b.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y git
@@ -90,8 +84,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Back to top ↑](#table-of-contents)
 
 ![symfony](https://user-images.githubusercontent.com/6952638/71176964-3ab4e480-226b-11ea-8522-081106cbff50.png)
-
-Windows 10:
 
 ```powershell
 # Create a new folder
@@ -120,8 +112,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![php](https://user-images.githubusercontent.com/6952638/70372327-bca52500-18dd-11ea-8638-7cdab7c5d6e0.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y php --version=7.3.12
@@ -144,6 +134,10 @@ Add-Content c:\tools\php73\php.ini "zend_extension = C:\tools\php73\ext\php_opca
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'post_max_size = 8M','post_max_size = 64M') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'upload_max_filesize = 2M','upload_max_filesize = 64M') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'memory_limit = 128M','memory_limit = -1') | Set-Content -Path C:\tools\php73\php.ini
+((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'disable_functions =','disable_functions = error_reporting,ini_set,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source') | Set-Content -Path C:\tools\php73\php.ini
+((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'display_errors = Off','display_errors = On') | Set-Content -Path C:\tools\php73\php.ini
+((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'display_startup_errors = Off','display_startup_errors = On') | Set-Content -Path C:\tools\php73\php.ini
+((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT','error_reporting = E_ALL') | Set-Content -Path C:\tools\php73\php.ini
 
 # Reload $PATH
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
@@ -158,8 +152,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Back to top ↑](#table-of-contents)
 
 ![composer](https://user-images.githubusercontent.com/6952638/70372308-a008ed00-18dd-11ea-9ee0-61d017dfa488.png)
-
-Windows 10:
 
 ```powershell
 # Download installer
@@ -192,8 +184,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![mariadb](https://user-images.githubusercontent.com/6952638/71176963-3a1c4e00-226b-11ea-9627-e64caabef009.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y mariadb --version=10.4.8
@@ -208,8 +198,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 ![node](https://user-images.githubusercontent.com/6952638/71177167-a4cd8980-226b-11ea-9095-c96d5b96faa7.png)
 
-Windows 10:
-
 ```powershell
 # Install
 choco install -y nodejs --version=12.13.1
@@ -223,8 +211,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 [Back to top ↑](#table-of-contents)
 
 ![yarn](https://user-images.githubusercontent.com/6952638/70372314-a13a1a00-18dd-11ea-9cdb-7b976c2beab8.png)
-
-Windows 10:
 
 ```powershell
 # Install

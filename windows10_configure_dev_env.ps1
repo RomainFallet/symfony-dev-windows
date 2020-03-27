@@ -1,13 +1,17 @@
 # Install
 Try { Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) } Catch { throw $_.Exception.Message }
+
 # Reload your $PATH
 Try { $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") } Catch { throw $_.Exception.Message }
 Try { choco -v } Catch { throw $_.Exception.Message }
+
 # Install
 Try { choco install -y git } Catch { throw $_.Exception.Message }
+
 # Reload $PATH
 Try { $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") } Catch { throw $_.Exception.Message }
 Try { git --version } Catch { throw $_.Exception.Message }
+
 # Create a new folder
 Try { New-Item -ItemType Directory -Force -Path C:\tools } Catch { throw $_.Exception.Message }New-Item -ItemType Directory -Force -Path C:\tools\symfony
 
@@ -17,15 +21,20 @@ Try { [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\tools\symfo
 Try { IF ((Get-WmiObject -class Win32_Processor) -like '*Intel*'){$arch="386"} Else {$arch="amd64"} } Catch { throw $_.Exception.Message }
 # Enable TLS 1.2 (in order to connect correctly to Github)
 Try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; } Catch { throw $_.Exception.Message }
+
 # Download executable from Github depending on computer architecture
 Try { (New-Object System.Net.WebClient).DownloadFile("https://github.com/symfony/cli/releases/latest/download/symfony_windows_$arch.exe", "C:\tools\symfony\symfony.exe"); } Catch { throw $_.Exception.Message }
+
 # Reload $PATH
 Try { $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") } Catch { throw $_.Exception.Message }
 Try { symfony -V } Catch { throw $_.Exception.Message }
+
 # Install
 Try { choco install -y php --version=7.3.12 } Catch { throw $_.Exception.Message }
+
 # Install extensions
 Try { Invoke-WebRequest -outf C:\tools\php73\ext\php_xdebug.dll http://xdebug.org/files/php_xdebug-2.9.0-7.3-vc15-nts-x86_64.dll } Catch { throw $_.Exception.Message }
+
 # Activate extensions in php.ini
 Try { Add-Content c:\tools\php73\php.ini "extension_dir = ext" } Catch { throw $_.Exception.Message }Add-Content c:\tools\php73\php.ini "zend_extension = C:\tools\php73\ext\php_xdebug.dll"
 Try { Add-Content c:\tools\php73\php.ini "zend_extension = C:\tools\php73\ext\php_opcache.dll" } Catch { throw $_.Exception.Message }((Get-Content -path C:\tools\php73\php.ini -Raw) -replace ';extension=mbstring','extension=mbstring') | Set-Content -Path C:\tools\php73\php.ini
@@ -35,6 +44,11 @@ Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace ';extension=intl
 # Update some configuration in php.ini
 Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'post_max_size = 8M','post_max_size = 64M') | Set-Content -Path C:\tools\php73\php.ini } Catch { throw $_.Exception.Message }((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'upload_max_filesize = 2M','upload_max_filesize = 64M') | Set-Content -Path C:\tools\php73\php.ini
 Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'memory_limit = 128M','memory_limit = -1') | Set-Content -Path C:\tools\php73\php.ini } Catch { throw $_.Exception.Message }
+Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'disable_functions =','disable_functions = error_reporting,ini_set,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source') | Set-Content -Path C:\tools\php73\php.ini } Catch { throw $_.Exception.Message }
+Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'display_errors = Off','display_errors = On') | Set-Content -Path C:\tools\php73\php.ini } Catch { throw $_.Exception.Message }
+Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'display_startup_errors = Off','display_startup_errors = On') | Set-Content -Path C:\tools\php73\php.ini } Catch { throw $_.Exception.Message }
+Try { ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT','error_reporting = E_ALL') | Set-Content -Path C:\tools\php73\php.ini } Catch { throw $_.Exception.Message }
+
 # Reload $PATH
 Try { $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") } Catch { throw $_.Exception.Message }
 Try { php -v } Catch { throw $_.Exception.Message }
@@ -45,10 +59,13 @@ Try { New-Item -ItemType Directory -Force -Path C:\tools } Catch { throw $_.Exce
 
 # Add this folder to $PATH
 Try { [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\tools\composer", "Machine") } Catch { throw $_.Exception.Message }
+
 # Install
 Try { php composer-setup.php --version=1.9.1 --install-dir=C:\tools\composer } Catch { throw $_.Exception.Message }
+
 # Remove installer
 Try { php -r "unlink('composer-setup.php');" } Catch { throw $_.Exception.Message }
+
 # Make it executable globally
 Try { New-Item -ItemType File -Path C:\tools\composer\composer.bat } Catch { throw $_.Exception.Message }Add-Content C:\tools\composer\composer.bat '@php "%~dp0composer.phar" %*'
 
