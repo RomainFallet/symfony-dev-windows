@@ -130,6 +130,9 @@ Add-Content c:\tools\php73\php.ini "zend_extension = C:\tools\php73\ext\php_opca
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace ';extension=gd2','extension=gd2') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace ';extension=intl','extension=intl') | Set-Content -Path C:\tools\php73\php.ini
 
+# Make a backup of the config file
+Copy-Item -Path C:\tools\php73\php.ini -Destination C:\tools\php73\.php.ini.backup
+
 # Update some configuration in php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'post_max_size = 8M','post_max_size = 64M') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'upload_max_filesize = 2M','upload_max_filesize = 64M') | Set-Content -Path C:\tools\php73\php.ini
