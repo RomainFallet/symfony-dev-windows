@@ -77,6 +77,10 @@ choco install -y git
 
 # Reload $PATH
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+# Configure Git
+git config --global user.name "$($gituser = Read-Host -Prompt 'Enter your Git name'; echo $gituser)"
+git config --global user.email "$($gitemail = Read-Host -Prompt 'Enter your Git email'; echo $gitemail)"
 ```
 
 ### Symfony CLI
