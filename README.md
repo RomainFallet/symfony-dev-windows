@@ -137,7 +137,7 @@ Copy-Item -Path C:\tools\php73\php.ini -Destination C:\tools\php73\.php.ini.back
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'post_max_size = 8M','post_max_size = 64M') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'upload_max_filesize = 2M','upload_max_filesize = 64M') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'memory_limit = 128M','memory_limit = -1') | Set-Content -Path C:\tools\php73\php.ini
-((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'disable_functions =','disable_functions = error_reporting,ini_set,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source') | Set-Content -Path C:\tools\php73\php.ini
+((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'disable_functions =','disable_functions = ini_set,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'display_errors = Off','display_errors = On') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'display_startup_errors = Off','display_startup_errors = On') | Set-Content -Path C:\tools\php73\php.ini
 ((Get-Content -path C:\tools\php73\php.ini -Raw) -replace 'error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT','error_reporting = E_ALL') | Set-Content -Path C:\tools\php73\php.ini
