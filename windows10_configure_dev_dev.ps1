@@ -7,6 +7,8 @@ try {
   # Reload your $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+  choco -v
+
   ### Git
 
   # Install
@@ -14,6 +16,12 @@ try {
 
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+  # Configure Git
+  git config --global user.name "$($gituser = Read-Host -Prompt 'Enter your Git name'; echo $gituser)"
+  git config --global user.email "$($gitemail = Read-Host -Prompt 'Enter your Git email'; echo $gitemail)"
+
+  git --version
 
   ### Symfony CLI
 
@@ -35,6 +43,8 @@ try {
 
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+  symfony -V
 
   ### PHP 7.3
 
@@ -69,6 +79,9 @@ try {
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+  php -v
+  php -m
+
   ### Composer 1.9
 
   # Download installer
@@ -94,6 +107,8 @@ try {
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+  composer -V
+
   ### MariaDB 10.4
 
   # Install
@@ -101,6 +116,8 @@ try {
 
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+  mysql -u root -e "SELECT VERSION();"
 
   ### NodeJS 12
 
@@ -110,6 +127,9 @@ try {
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+  node -v
+  npm -v
+
   ### Yarn 1.21
 
   # Install
@@ -117,6 +137,8 @@ try {
 
   # Reload $PATH
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+  yarn -v
 } catch {
   Exit 1
 }
