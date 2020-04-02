@@ -4,8 +4,6 @@
 
 **This repository is part of the [symfony-dev-deploy](https://github.com/RomainFallet/symfony-dev-deploy) repository.**
 
-![Test dev env install script](https://github.com/RomainFallet/symfony-dev-windows/workflows/Test%20dev%20env%20install%20script/badge.svg)
-
 The purpose of this repository is to provide instructions to configure a PHP/Symfony development environment on **Windows 10**.
 
 The goal is to provide an opinionated, fully tested environment, that just work.
