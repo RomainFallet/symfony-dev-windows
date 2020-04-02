@@ -1,5 +1,7 @@
 # The PHP/Symfony dev instructions kit for Windows
 
+![logo-windows](https://user-images.githubusercontent.com/6952638/78178915-a872ce00-7460-11ea-9199-995201b03e79.png)
+
 **This repository is part of the [symfony-dev-deploy](https://github.com/RomainFallet/symfony-dev-deploy) repository.**
 
 ![Test dev env install script](https://github.com/RomainFallet/symfony-dev-windows/workflows/Test%20dev%20env%20install%20script/badge.svg)
